@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:practice_material3/conatainer_box.dart';
 import 'package:practice_material3/seed_color.dart';
 import 'package:provider/provider.dart';
-import 'package:random_color/random_color.dart';
 
 void main() {
   runApp(
@@ -26,6 +25,7 @@ class _MaterialColorPracticeState extends State<MaterialColorPractice> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme:
             ColorScheme.fromSeed(seedColor: context.watch<Colored>().seedColor),
