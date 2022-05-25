@@ -5,7 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:random_color/random_color.dart';
 
 void main() {
-  runApp(const MaterialColorPractice());
+  runApp(
+    ChangeNotifierProvider<Colored>(
+      create: (_) => Colored(),
+      child: const MaterialColorPractice(),
+    ),
+  );
 }
 
 class MaterialColorPractice extends StatefulWidget {
@@ -15,15 +20,15 @@ class MaterialColorPractice extends StatefulWidget {
   State<MaterialColorPractice> createState() => _MaterialColorPracticeState();
 }
 
-Color seedColor = const Color(0xff348feb);
-ColorScheme _colorScheme = ColorScheme.fromSeed(seedColor: seedColor);
+//Color seedColor = const Color(0xff348feb);
 
 class _MaterialColorPracticeState extends State<MaterialColorPractice> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorScheme: _colorScheme,
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: context.watch<Colored>().seedColor),
         brightness: Brightness.light,
       ),
       home: const HomeScreen(),
@@ -55,17 +60,12 @@ class _HomeState extends State<HomeScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('now seedColor is $seedColor'),
+                  child: Text(
+                      'now seedColor is ${context.watch<Colored>().seedColor}'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      RandomColor _randomColor = RandomColor();
-                      seedColor = _randomColor.randomColor();
-                      ThemeData(
-                          colorScheme:
-                              ColorScheme.fromSeed(seedColor: seedColor));
-                    });
+                    context.read<Colored>().changeColor();
                   },
                   child: const Text('color change'),
                 ),
