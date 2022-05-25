@@ -61,7 +61,9 @@ class _HomeState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                      'now seedColor is ${context.watch<Colored>().seedColor}'),
+                    'now seedColor is ${context.watch<Colored>().seedColor}',
+                    style: const TextStyle(fontSize: 20),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -71,6 +73,7 @@ class _HomeState extends State<HomeScreen> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Column(
                       children: [
@@ -136,11 +139,6 @@ class _HomeState extends State<HomeScreen> {
                           color:
                               Theme.of(context).colorScheme.onTertiaryContainer,
                           title: 'onTertiaryContainer',
-                          fontlight: true,
-                        ),
-                        const ContainerBox(
-                          color: Colors.transparent,
-                          title: '',
                           fontlight: true,
                         ),
                       ],

@@ -22,15 +22,28 @@ class _ContainerBoxState extends State<ContainerBox> {
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 100),
+      child: Container(
+        //duration: const Duration(milliseconds: 0),
         width: size.width * 0.45,
         height: 50,
         decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(25),
-          color: widget.color,
-        ),
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(15),
+            color: widget.color,
+            boxShadow: [
+              const BoxShadow(
+                color: Colors.white70,
+                offset: Offset(-2, -2),
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+              BoxShadow(
+                color: Colors.grey.shade500,
+                offset: const Offset(2, 2),
+                blurRadius: 5,
+                spreadRadius: 1,
+              ),
+            ]),
         child: Center(
           child: Text(
             widget.title,
